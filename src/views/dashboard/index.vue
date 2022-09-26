@@ -7,14 +7,22 @@
 
 <script>
 import { mapGetters } from 'vuex'
-
+// import { getInfo } from '@/api/user'
 export default {
   name: 'Dashboard',
   computed: {
     ...mapGetters([
       'name'
     ])
-  }
+  },
+  methods: {
+    // async getinfoAPI() {
+    //   await getInfo()
+    // }
+  },
+  // created() {
+  //   this.getinfoAPI()
+  // },
 }
 </script>
 

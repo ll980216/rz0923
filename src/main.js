@@ -14,12 +14,18 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
+import * as directive from '@/directives/inxdex'
+Object.keys(directive).forEach(ele => {
+  Vue.directive(ele,directive[ele])
+})
+// Vue.directive('imgerror',imgerror)
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
 Vue.config.productionTip = false
+Vue.config.devtools = true;
 
 new Vue({
   el: '#app',

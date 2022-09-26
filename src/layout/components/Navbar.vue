@@ -8,10 +8,11 @@
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
       <img
-           src="http://destiny001.gitee.io/image/monkey_02.jpg"
+      v-imgerror="defaultImg"
+           :src="staffPhoto"
            class="user-avatar"
            />
-      <span>用户名</span>
+      <span>{{name}}</span>
       <i class="el-icon-caret-bottom" />
     </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -37,7 +38,7 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-
+import defaultImg from '@/assets/common/head.jpg'
 export default {
   components: {
     Breadcrumb,
@@ -46,8 +47,15 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar'
+      'avatar',
+      'name',
+      'staffPhoto'
     ])
+  },
+  data() {
+    return {
+      defaultImg:defaultImg
+    }
   },
   methods: {
     toggleSideBar() {
@@ -118,23 +126,25 @@ export default {
 
     .avatar-container {
       margin-right: 30px;
-
       .avatar-wrapper {
-        margin-top: 5px;
         position: relative;
+        // 开启flex
+        display: flex;
+        align-items: center;
+        color: #fff;
 
         .user-avatar {
           cursor: pointer;
           width: 40px;
           height: 40px;
           border-radius: 10px;
+          margin-right: 8px;
         }
-
         .el-icon-caret-bottom {
           cursor: pointer;
           position: absolute;
           right: -20px;
-          top: 25px;
+          top: 18px;
           font-size: 12px;
         }
       }
@@ -159,29 +169,5 @@ export default {
   }
 }
 }
-.avatar-container {
-      margin-right: 30px;
-      .avatar-wrapper {
-        position: relative;
-        // 开启flex
-        display: flex;
-        align-items: center;
-        color: #fff;
 
-        .user-avatar {
-          cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-          margin-right: 8px;
-        }
-        .el-icon-caret-bottom {
-          cursor: pointer;
-          position: absolute;
-          right: -20px;
-          top: 18px;
-          font-size: 12px;
-        }
-      }
-    }
 </style>
