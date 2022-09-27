@@ -47,9 +47,9 @@
 import { validphone } from '@/utils/validate'
 export default {
   name: 'Login',
-  created() {
-   this.getinfoAPI()
-  },
+  // created() {
+  //  this.getinfoAPI()
+  // },
   data() {
     const phonevalid = (rule, value, callback) => {
       // validphone封装的校验规则 value是接收的当前值
