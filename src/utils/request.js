@@ -1,14 +1,14 @@
 // 对axios二次封装
 import router from '@/router'
 import store from '@/store'
-import { config } from '@vue/test-utils'
+// import { config } from '@vue/test-utils'
 import axios from 'axios'
 import { Message } from 'element-ui'
-const TimeOut = 1
+const TimeOut = 3600
 function IsChangeTime() {
   const newTime = Date.now()
-  const curr = (newTime - store.getters.hrsassTime) /1000
-  return curr > TimeOut //true 为超时
+  const curr = (newTime - store.getters.hrsassTime) / 1000
+  return curr > TimeOut // true 为超时
 }
 
 // 通过axios创造axios实例
@@ -19,16 +19,16 @@ const service = axios.create({
 // 响应拦截器
 service.interceptors.response.use(response => {
   // 考虑把那些数据跑出去
-   // 接口成功，并且业务成功
+  // 接口成功，并且业务成功
   // 没有成功Promise.reject抛出错误
-   const { message, data, success } = response.data
-  if (success) { //  业务逻辑是成功的}
-  return data
-   }
-   Message.error(message)
-    return Promise.reject(new Error(message))
+  const { message, data, success } = response.data
+  if (success) { // 业务逻辑是成功的}
+    return data
+  }
+  Message.error(message)
+  return Promise.reject(new Error(message))
 }, error => {
-  if (error.response&&error.response.status === 401) {
+  if (error.response && error.response.status === 401) {
     store.dispatch('user/logout')
     router.push('/login')
     Message.error('token超时了')

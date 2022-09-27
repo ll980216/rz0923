@@ -1,0 +1,524 @@
+/*网页的散步准备工作*/
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    font-size: 12px;
+    font-family: "微软雅黑";
+    color: #666;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+
+/*导航*/
+
+.nav_box {
+    width: 100%;
+    height: 90px;
+    background: #000;
+}
+
+.nav_box .nav {
+    width: 1200px;
+    height: 90px;
+    line-height: 90px;
+    margin: 0 auto;
+}
+
+.nav_box .nav h1 {
+    float: left;
+    font-size: 40px;
+}
+
+.nav_box .nav ul {
+    float: right;
+}
+
+.nav_box .nav ul li {
+    float: left;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.nav_box .nav li a {
+    color: #ffe880;
+}
+
+.nav_box .nav li a:hover {
+    color: #ffc001;
+}
+
+
+/*banenr*/
+
+.banner_box {
+    height: 850px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner_box .banner {
+    width: 1920px;
+    height: 850px;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    margin-left: -960px;
+    top: 50%;
+    margin-top: -425px;
+}
+
+.tag {
+    width: 465px;
+    height: 522px;
+    background: rgba(0, 0, 0, .3);
+    position: absolute;
+    left: 50%;
+    margin-left: 320px;
+    top: 50%;
+    margin-top: -260px;
+    z-index: 2;
+}
+
+.tag .f_title {
+    padding: 15px 10px;
+    background: rgba(0, 0, 0, .5);
+    color: #FFC001;
+    margin-bottom: 20px;
+}
+
+.tag .f_title h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.tag .in_p li {
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.tag .in_p li span {
+    float: left;
+    width: 20%;
+    height: 40px;
+    text-align: right;
+    color: #fff;
+    line-height: 40px;
+}
+
+.tag .in_p li input {
+    float: left;
+    width: 65%;
+    height: 40px;
+    border: 1px #fff solid;
+    background: none;
+    margin-left: 10px;
+    line-height: 40px;
+    text-indent: 1em;
+    color: #fff;
+}
+
+.tag .in_p li textarea {
+    height: 100px;
+    float: left;
+    width: 65%;
+    border: 1px #fff solid;
+    background: none;
+    margin-left: 10px;
+    color: #fff;
+}
+
+
+/*====================================主题内容开始=============================================*/
+
+.con {
+    width: 1200px;
+    padding-top: 110px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.con_title {
+    padding-bottom: 25px;
+    margin-bottom: 50px;
+    border-bottom: 1px #dedede solid;
+    text-align: center;
+}
+
+.con_title h3 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    font-weight: normal;
+    color: #333;
+}
+
+.con_title p {
+    font-size: 16px;
+    line-height: 25px;
+}
+
+
+/*课程介绍*/
+
+.ck_list {}
+
+.ck_list li {
+    width: 332px;
+    float: left;
+    text-align: center;
+}
+
+.ck_list li h4 {
+    font-size: 18px;
+    color: #333;
+    margin: 30px 0 15px 0;
+}
+
+.ck_list li p {
+    line-height: 25px;
+    font-size: 14px;
+}
+
+.ck_list li a {
+    width: 110px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+    font-size: 18px;
+    display: block;
+    margin: 30px auto;
+    transition: all .5s;
+    transform: scale(1);
+}
+
+.ck_list li a:hover {
+    background: #ffc001;
+    transform: scale(0.9);
+}
+
+.ck_list li.ck_list_center {
+    margin: 0 102px;
+}
+
+
+/*热门视频*/
+
+.sp_box {}
+
+.sp_box .sp_left {
+    float: left;
+    width: 236px;
+}
+
+.sp_box .sp_right {
+    float: right;
+    width: 940px;
+    overflow: hidden;
+}
+
+.sp_box .sp_right ul {
+    width: 1000px;
+}
+
+.sp_box .sp_right ul li {
+    float: left;
+    width: 298px;
+    margin-right: 24px;
+}
+
+.sp_box .sp_right ul li p {
+    line-height: 55px;
+    font-size: 16px;
+}
+
+.sp_box .sp_right a {
+    overflow: hidden;
+    display: block;
+    width: 298px;
+}
+
+
+/*企业合作*/
+
+.ls_list {
+    overflow: hidden;
+}
+
+.ls_list dl {
+    width: 550px;
+    float: left;
+    padding-right: 50px;
+    margin-bottom: 60px;
+}
+
+.ls_list dl dt {
+    float: left;
+    margin-right: 25px;
+    width: 219px;
+    overflow: hidden;
+}
+
+.ls_list dl dd {
+    float: left;
+    width: 306px;
+}
+
+.ls_list dl dd h4 {
+    font-size: 20px;
+    line-height: 50px;
+}
+
+.ls_list dl dd h4 span {
+    font-weight: normal;
+}
+
+.ls_list dl dd p {
+    font-size: 14px;
+    line-height: 20px;
+    color: #999;
+}
+
+.ls_list dl dd .ls_btn {
+    width: 186px;
+    height: 45px;
+    margin-top: 65px;
+    background: #FFC001;
+    text-align: center;
+    line-height: 45px;
+    font-size: 16px;
+    color: #333;
+    ;
+}
+
+.ls_list dl dd .ls_btn span {
+    font-size: 20px;
+}
+
+.ls_more {
+    width: 210px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px #666 solid;
+    display: block;
+    margin: 0 auto;
+}
+
+
+/*校区介绍*/
+
+.xq_list {
+    overflow: hidden;
+}
+
+.xq_list li {
+    width: 580px;
+    float: left;
+}
+
+.xq_list li h3 {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 50px;
+    border-bottom: 1px #dedede solid;
+    margin-bottom: 25px;
+}
+
+.xq_list li p {
+    font-size: 14px;
+    line-height: 24px;
+    color: #999;
+}
+
+.xq_list li.xq_r {
+    float: right;
+}
+
+
+/*学校环境*/
+
+.no_b {
+    border-bottom: none !important;
+}
+
+.hj_list {}
+
+.hj_list li {
+    float: left;
+    width: 367px;
+    height: 203px;
+    overflow: hidden;
+}
+
+.hj_list li.hj_z {
+    margin: 0 49px;
+}
+
+
+/*动态*/
+
+.dt_list {
+    overflow: hidden;
+}
+
+.dt_list li {
+    width: 580px;
+    float: left;
+}
+
+.dt_list li .img_a {
+    margin-bottom: 30px;
+}
+
+.dt_list li dl {
+    height: 86px;
+    padding: 15px 0;
+    border-bottom: 1px #dedede dashed;
+}
+
+.dt_list li dt {
+    float: left;
+    width: 135px;
+    height: 86px;
+}
+
+.dt_list li dd {
+    float: right;
+    width: 440px;
+}
+
+.dt_list li dd h3 {
+    line-height: 24px;
+    margin-bottom: 5px;
+}
+
+.dt_list li dd h3 a {
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+}
+
+.dt_list li dd h3 a span {
+    float: right;
+    color: #999;
+}
+
+.dt_list li dd h3 a:hover,
+.dt_list li dd h3 a:hover span {
+    color: #FFC001;
+}
+
+.dt_list li dd p {
+    line-height: 18px;
+    font-size: 14px;
+}
+
+.dt_list li.xq_r {
+    float: right;
+}
+
+.dt_more {
+    width: 210px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px #666 solid;
+    display: block;
+    margin: 50px auto;
+}
+
+
+/*foot*/
+
+.foot_box {
+    background: #222 url(../img/footbg.jpg) no-repeat center 0;
+}
+
+.foot_box .foot_one {
+    width: 1200px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.foot_box .foot_one .a_icon {
+    width: 560px;
+    margin: 0 auto;
+}
+
+.foot_box .foot_one .a_icon a {
+    float: left;
+    padding: 110px 80px 0;
+    text-align: center;
+    color: #FFC001;
+    font-size: 30px;
+}
+
+.foot_box .foot_two {
+    width: 1200px;
+    height: 280px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.foot_box .foot_two dl dt {
+    float: left;
+    width: 190px;
+    height: 260px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.foot_box .foot_two dl dt img {
+    border: 5px #fff solid;
+    margin-bottom: 10px;
+}
+
+.foot_box .foot_two dl dd {
+    float: right;
+    width: 930px;
+}
+
+.foot_nav {
+    border-bottom: 1px #666666 solid;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+.foot_nav a {
+    float: left;
+    padding: 25px 20px;
+    color: #fff;
+}
+
+.foot_box .foot_two dl dd p {
+    width: 50%;
+    float: left;
+    font-size: 14px;
+    color: #fff;
+    line-height: 30px;
+    padding-top: 20px;
+}
+
+.banquan {
+    padding: 20px;
+    font-size: 16px;
+    text-align: center;
+    color: #999;
+    background: #000;
+}

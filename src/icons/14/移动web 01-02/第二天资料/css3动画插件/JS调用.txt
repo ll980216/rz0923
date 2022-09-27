@@ -1,0 +1,5 @@
+<script src="js/wow.min.js"></script>
+　　  <script type="text/javascript">
+        /*初始化自动动画wow.min.js插件*/
+        new WOW().init();
+    </script>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        /* 抖音加载 */
+        .box {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            background-color: #4AD3B4;
+        }
+
+        @keyframes dot1 {
+            to {
+                transform: translateX(-50px);
+                opacity: .2;
+            }
+        }
+
+        @keyframes dot2 {
+            to {
+                transform: translateX(50px);
+                opacity: .2;
+            }
+        }
+
+        .dot1,
+        .dot2 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            margin-left: -10px;
+            margin-top: -10px;
+            background-color: rgba(255, 255, 255, .5);
+            border-radius: 50%;
+        }
+
+        .dot1 {
+            animation: dot1 .5s linear infinite alternate;
+        }
+
+        .dot2 {
+            animation: dot2 .5s linear infinite alternate;
+        }
+
+        /* 转圈动画 */
+        .box2 {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            background-color: #AB69D9;
+        }
+
+        .cir {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 80px;
+            height: 80px;
+            transform: translate(-50%, -50%);
+            border: 3px solid rgba(255, 255, 255, .5);
+            border-radius: 50%;
+        }
+
+        @keyframes rot {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .cir::after {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 80px;
+            height: 80px;
+            transform: translate(-50%, -50%);
+            content: '';
+            border: 3px solid transparent;
+            border-top-color: rgba(255, 255, 255);
+            border-radius: 50%;
+            animation: rot 2s linear infinite;
+        }
+
+        /* 一排加载 */
+        .box3 {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            background-color: #C1D64A;
+        }
+
+        .box3 ul {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        @keyframes row {
+            0% {}
+
+            50% {
+                transform: translateY(15px);
+            }
+
+            70% {
+                transform: translateY(-12px);
+            }
+
+            75% {
+                transform: translateY(-15px);
+            }
+
+            80% {
+                transform: translateY(-12px);
+            }
+
+            85% {}
+
+            90% {
+                transform: translateY(-15px);
+            }
+
+            95% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .box3 li {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-color: rgba(255, 255, 255, .5);
+            border-radius: 50%;
+            animation: row 1s infinite;
+        }
+
+        .box3 li:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        .box3 li:nth-child(3) {
+            animation-delay: .4s;
+        }
+
+        .box3 li:nth-child(4) {
+            animation-delay: .6s;
+        }
+
+        .box3 li:nth-child(5) {
+            animation-delay: .8s;
+        }
+
+        /* 加载波纹 */
+        .box4 {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            background-color: #F9553F;
+        }
+
+        .box4 div[class^=rip] {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 5px solid rgba(255, 255, 255, .5);
+            border-radius: 50%;
+        }
+
+        .box4 div.rip1 {
+            width: 20px;
+            height: 20px;
+        }
+
+        .box4 div.rip2 {
+            width: 60px;
+            height: 60px;
+        }
+
+        .box4 div.rip3 {
+            width: 90px;
+            height: 90px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 抖音加载 -->
+    <div class="box">
+        <div class="dot1"></div>
+        <div class="dot2"></div>
+    </div>
+    <!-- 转圈动画 -->
+    <div class="box2">
+        <div class="cir"></div>
+    </div>
+    <!-- 一排加载 -->
+    <div class="box3">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!-- 加载波纹 -->
+    <div class="box4">
+        <div class="rip1"></div>
+        <div class="rip2"></div>
+        <div class="rip3"></div>
+    </div>
+</body>
+
+</html>

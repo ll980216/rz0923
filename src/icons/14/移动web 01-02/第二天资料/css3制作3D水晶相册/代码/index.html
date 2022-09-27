@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        html,
+        body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            perspective: 1800px;
+            background: #6e1826;
+        }
+
+        /* 转动动画 */
+        @keyframes rot {
+            0% {
+                /* transform: rotateX(0deg) rotateY(0deg); */
+            }
+
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        .box img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .box {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -200px;
+            margin-left: -100px;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transform: rotateX(30deg) rotateY(30deg);
+            animation: rot 10s linear infinite alternate;
+        }
+
+
+
+        .box div {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100%;
+            height: 100%;
+            margin-top: -100px;
+            margin-left: -100px;
+            opacity: 0.5;
+            background: #333;
+            transition: all .3s;
+        }
+
+
+
+        /* 外层大盒子 */
+        .box div:nth-of-type(1) {
+            transform: translateZ(100px);
+        }
+
+        .box div:nth-of-type(2) {
+            transform: translateZ(-100px) rotateY(180deg);
+        }
+
+        .box div:nth-of-type(3) {
+            transform: translateY(-100px) rotateX(90deg);
+        }
+
+        .box div:nth-of-type(4) {
+            transform: translateY(100px) rotateX(90deg);
+        }
+
+        .box div:nth-of-type(5) {
+            transform: translateX(-100px) rotateY(90deg);
+        }
+
+        .box div:nth-of-type(6) {
+            transform: translateX(100px) rotateY(90deg);
+        }
+
+        /* 鼠标经过产生效果 */
+        .box:hover div {
+            opacity: .9;
+        }
+
+        .box:hover div:nth-of-type(1) {
+            transform: translateZ(230px) scale(1.2);
+        }
+
+        .box:hover div:nth-of-type(2) {
+            transform: translateZ(-230px) rotateY(180deg) scale(1.2);
+        }
+
+        .box:hover div:nth-of-type(3) {
+            transform: translateY(-230px) rotateX(90deg) scale(1.2);
+        }
+
+        .box:hover div:nth-of-type(4) {
+            transform: translateY(230px) rotateX(90deg) scale(1.2);
+        }
+
+        .box:hover div:nth-of-type(5) {
+            transform: translateX(-230px) rotateY(90deg) scale(1.2);
+        }
+
+        .box:hover div:nth-of-type(6) {
+            transform: translateX(230px) rotateY(90deg) scale(1.2);
+        }
+
+        /* 小盒子 */
+        .box>span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 140px;
+            height: 140px;
+            margin-top: -70px;
+            margin-left: -70px;
+            background-repeat: no-repeat !important;
+            background-size: 140px 140px !important;
+            opacity: .9;
+        }
+
+        /* 内侧小盒子 */
+        .box>span:nth-of-type(1) {
+            transform: translateZ(70px);
+        }
+
+        .box>span:nth-of-type(2) {
+            transform: translateZ(-70px) rotateY(-180deg);
+        }
+
+        .box>span:nth-of-type(3) {
+            transform: translateY(-70px) rotateX(-90deg);
+        }
+
+        .box>span:nth-of-type(4) {
+            transform: translateY(70px) rotateX(90deg);
+        }
+
+        .box>span:nth-of-type(5) {
+            transform: translateX(-70px) rotateY(-90deg);
+        }
+
+        .box>span:nth-of-type(6) {
+            transform: translateX(70px) rotateY(90deg);
+        }
+
+
+
+        /* 背景 */
+        .bgs {
+            position: absolute;
+            left: 0;
+            top: 0;
+            /* z-index: 3; */
+            width: 100%;
+            height: 100%;
+            background: url(img/bg1.png);
+            animation: cc 20s linear infinite;
+        }
+
+        .bgs2 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: url(img/bg2.png);
+            animation: cc 30s linear infinite;
+        }
+
+        @keyframes cc {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 0 1000%;
+            }
+        }
+
+        /* LOVE  */
+        /* f5834a  c7124a */
+        @keyframes col {
+            0% {
+                color: #f5834a;
+            }
+
+            25% {
+                color: #3ed1fd;
+            }
+
+            50% {
+                color: #f94562;
+            }
+
+            75% {
+                color: #c7aa18;
+            }
+
+            100% {
+                color: #c7124a;
+            }
+        }
+
+        .txt {
+            position: absolute;
+            left: 50%;
+            bottom: 80px;
+            transform: translateX(-50%);
+            font-size: 160px;
+            font-weight: 700;
+            z-index: -1;
+        }
+
+        .txt span {
+            color: #f5834a;
+        }
+
+        .txt span:nth-child(1) {
+            animation: col 1s steps(5) .3s infinite;
+        }
+
+        .txt span:nth-child(2) {
+            animation: col 1s steps(5) .6s infinite;
+        }
+
+        .txt span:nth-child(3) {
+            animation: col 1s steps(5) .9s infinite;
+        }
+
+        .txt span:nth-child(4) {
+            animation: col 1s steps(5) 1.2s infinite;
+        }
+
+        @media screen and (min-width: 320px) and (max-width: 750px) {
+            .box {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-top: -130px;
+                margin-left: -80px;
+                width: 160px;
+                height: 160px;
+                transform-style: preserve-3d;
+                transform: rotateX(30deg) rotateY(30deg);
+                animation: rot 10s linear infinite;
+            }
+
+            .box div {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 100%;
+                height: 100%;
+                margin-top: -80px;
+                margin-left: -80px;
+                opacity: 0.5;
+                background: #333;
+                transition: all .3s;
+            }
+
+            /* 外层大盒子 */
+            .box div:nth-of-type(1) {
+                transform: translateZ(80px);
+            }
+
+            .box div:nth-of-type(2) {
+                transform: translateZ(-80px) rotateY(180deg);
+            }
+
+            .box div:nth-of-type(3) {
+                transform: translateY(-80px) rotateX(90deg);
+            }
+
+            .box div:nth-of-type(4) {
+                transform: translateY(80px) rotateX(90deg);
+            }
+
+            .box div:nth-of-type(5) {
+                transform: translateX(-80px) rotateY(90deg);
+            }
+
+            .box div:nth-of-type(6) {
+                transform: translateX(80px) rotateY(90deg);
+            }
+
+            /* 鼠标经过产生效果 */
+            .box:hover div {
+                opacity: .9;
+            }
+
+            .box:hover div:nth-of-type(1) {
+                transform: translateZ(130px) scale(1.1);
+            }
+
+            .box:hover div:nth-of-type(2) {
+                transform: translateZ(-130px) rotateY(180deg) scale(1.1);
+            }
+
+            .box:hover div:nth-of-type(3) {
+                transform: translateY(-130px) rotateX(90deg) scale(1.1);
+            }
+
+            .box:hover div:nth-of-type(4) {
+                transform: translateY(130px) rotateX(90deg) scale(1.1);
+            }
+
+            .box:hover div:nth-of-type(5) {
+                transform: translateX(-130px) rotateY(90deg) scale(1.1);
+            }
+
+            .box:hover div:nth-of-type(6) {
+                transform: translateX(130px) rotateY(90deg) scale(1.1);
+            }
+
+            /* 小盒子 */
+            .box>span {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 70px;
+                height: 70px;
+                margin-top: -35px;
+                margin-left: -35px;
+                background-repeat: no-repeat !important;
+                background-size: 70px 70px !important;
+                opacity: .9;
+            }
+
+            /* 内侧小盒子 */
+            .box>span:nth-of-type(1) {
+                transform: translateZ(35px);
+            }
+
+            .box>span:nth-of-type(2) {
+                transform: translateZ(-35px) rotateY(-180deg);
+            }
+
+            .box>span:nth-of-type(3) {
+                transform: translateY(-35px) rotateX(-90deg);
+            }
+
+            .box>span:nth-of-type(4) {
+                transform: translateY(35px) rotateX(90deg);
+            }
+
+            .box>span:nth-of-type(5) {
+                transform: translateX(-35px) rotateY(-90deg);
+            }
+
+            .box>span:nth-of-type(6) {
+                transform: translateX(35px) rotateY(90deg);
+            }
+
+            .txt {
+                font-size: 45px;
+            }
+        }
+
+        @media screen and (min-width: 750px) and (max-width: 1170px) {
+            .txt {
+                font-size: 100px;
+            }
+        }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 背景 -->
+    <div class="bgs"></div>
+    <div class="bgs2"></div>
+    <div class="box">
+        <!-- 外层大盒子 -->
+        <div class="out-1"><img src="img/01.jpg" alt=""></div>
+        <div class="out-2"><img src="img/02.jpg" alt=""></div>
+        <div class="out-3"><img src="img/03.jpg" alt=""></div>
+        <div class="out-4"><img src="img/04.jpg" alt=""></div>
+        <div class="out-5"><img src="img/05.jpg" alt=""></div>
+        <div class="out-6"><img src="img/06.jpg" alt=""></div>
+        <!-- 里面的小盒子 -->
+        <span><img src="img/01.jpg" alt=""></span>
+        <span><img src="img/02.jpg" alt=""></span>
+        <span><img src="img/03.jpg" alt=""></span>
+        <span><img src="img/04.jpg" alt=""></span>
+        <span><img src="img/05.jpg" alt=""></span>
+        <span><img src="img/06.jpg" alt=""></span>
+
+
+    </div>
+    <div class="txt">
+        <span>L</span>
+        <span>O</span>
+        <span>V</span>
+        <span>E</span>
+    </div>
+</body>
+
+</html>
