@@ -33,14 +33,14 @@ service.interceptors.response.use(response => {
     router.push('/login')
     Message.error('token超时了')
   } else {
-    // console.log(error)
+    // console.log(error1111)
     Message.error(error.message)
   }
   return Promise.reject(error)
 }
 )
 
-// 请求拦截器
+// 请求拦截器修改
 service.interceptors.request.use(config => {
   if (store.getters.token) {
     if (IsChangeTime()) {
