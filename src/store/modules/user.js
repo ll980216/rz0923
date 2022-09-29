@@ -5,7 +5,7 @@ export default {
   state: {
     token: null,
     userInfo: {},
-    hrsassTime: 0 
+    hrsassTime: 0
   },
   mutations: {
     setToken(state, token) {
@@ -27,15 +27,16 @@ export default {
   actions: {
     async loginActions({ commit }, loginData) {
       // 接口
-      const  data = await loginAPI(loginData)
+      const data = await loginAPI(loginData)
       console.log(data)
       commit('setToken', data)
-      commit('sethrsassTime',+new Date())
+      commit('sethrsassTime', +new Date())
     },
     async getasync({ commit }) {
       const res = await getInfo()
       const res1 = await getUserByID(res.userId)
-      const result = {...res,...res1}
+      const result = { ...res, ...res1 }
+      // 接口错了
       commit('setuserInfo', result)
       return JSON.parse(JSON.stringify(result))
     },

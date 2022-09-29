@@ -105,17 +105,14 @@ export default {
         // 返回promise
         await this.$refs.loginForm.validate()
         // 规则验证成功转圈
-      
         await this.$store.dispatch('user/loginActions', this.loginForm)
         this.loading = true
-        this.$router.push({ path: "/" })
+        this.$router.push({ path: '/' })
       } finally {
         this.loading = false
       }
-    },
-    
-  },
-  
+    }
+  }
 }
 </script>
 
