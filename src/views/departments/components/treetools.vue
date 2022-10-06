@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { getDepartments } from '@/api/departments'
+import { getDepartments, delDepartments } from '@/api/departments'
 export default {
   name: 'HrsaasTreeTools',
   props: {
@@ -52,6 +52,22 @@ export default {
     handleCommand(type) {
       if (type === 'add') {
         this.$emit('addDept', this.treeNode)
+      } else if (type === 'edit') {
+        this.$emit('editDept', this.treeNode)
+      } else {
+        // del
+        // 实现删除逻辑
+        // 二次确认
+        this.$confirm('是否删除该部门', '提示', {
+          type: 'warning'
+        }).then(async res => {
+          return delDepartments(this.treeNode.id)
+        }).then(res => {
+          this.$message.success('删除成功')
+          // 调用删除接口
+          // 利用$emit(自定义事件) 父组件 @自定义事件=‘调用渲染接口’
+          this.$emit('refreshList')
+        })
       }
     }
   }

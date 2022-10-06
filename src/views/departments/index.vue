@@ -1,15 +1,15 @@
 <template>
-  <div class="departments-container ">
+  <div v-loading="loading" class="departments-container ">
     <el-card class="tree-card">
       <!-- 用了一个行列布局 -->
       <!-- 缺少treeNode -->
       <treetools :tree-node="company" :is-root="false" @addDept="handleAddDept" />
       <!--放置一个属性  这里的props和我们之前学习的父传子 的props没关系-->
     </el-card>
-    <el-tree :data="departs" :props="defaultProps" :default-expand-all="true" @node-click="handleNodeClick">
-      <treetools slot-scope="{data}" :tree-node="data" @addDept="handleAddDept" />
+    <el-tree :data="departs" :props="defaultProps" :default-expand-all="true">
+      <treetools slot-scope="{data}" :tree-node="data" @addDept="handleAddDept" @editDept="editDept" @refreshList="getDepartments" />
     </el-tree>
-    <addDept :dialog-visible.sync="dialogVisible" :tree-node="currenNode" />
+    <addDept ref="addDept" :dialog-visible.sync="dialogVisible" :tree-node="currenNode" />
   </div>
 </template>
 
@@ -41,14 +41,24 @@ export default {
   },
   methods: {
     async getDepartments() {
-      const result = await getDepartments()
-      // this.company = { name: result.companyName, manager: '负责人' } // 这里定义一个空串  因为 它是根 所有的子节点的数据pid 都是 ""
-      this.company = { name: result.companyName, manager: result.companyManage, id: '' }
-      this.departs = tranListToTreeData(result.depts, '')
+      try {
+        this.loading = true
+        const result = await getDepartments()
+        // this.company = { name: result.companyName, manager: '负责人' } // 这里定义一个空串  因为 它是根 所有的子节点的数据pid 都是 ""
+        this.company = { name: result.companyName, manager: result.companyManage, id: '' }
+        this.departs = tranListToTreeData(result.depts, '')
+      } finally {
+        this.loading = false
+      }
     },
     handleAddDept(node) {
       this.dialogVisible = true
       this.currenNode = node
+    },
+    editDept(node) {
+      this.dialogVisible = true
+      this.currenNode = { ...node }
+      this.$refs.addDept.formData = { ...node }
     }
   }
 }

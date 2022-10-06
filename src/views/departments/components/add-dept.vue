@@ -1,6 +1,6 @@
 <template>
   <!-- 新增部门的弹层 -->
-  <el-dialog title="新增部门" :visible="dialogVisible" @close="handleClose">
+  <el-dialog :title="title" :visible="dialogVisible" @close="handleClose">
     <!-- 表单组件  el-form   label-width设置label的宽度   -->
     <!-- 匿名插槽 -->
     <el-form ref="addDeptForm" label-width="120px" :model="formData" :rules="rules">
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { getDepartments, addDepartments } from '@/api/departments'
+import { getDepartments, addDepartments, updateDepartments } from '@/api/departments'
 import { getEmployeeSimple } from '@/api/employees'
 export default {
   props: {
@@ -47,16 +47,33 @@ export default {
   data() {
     const codeCheck = async(rule, value, callback) => {
       const { depts } = await getDepartments()
-      const isRepeat = depts.some(ele => ele.code === value)
       console.log(depts)
+      // 布尔值
+      let isRepeat = true
+      // 问题：在编辑模式下，由于数据已经存在，会产生自己校验自己的状态
+      // 解决方案：对比过程中 把自己排除掉 在对比
+      if (this.formData.id) {
+        // 找到同级部分
+        const deptstj1 = depts.some(ele => ele.id !== this.formData.id && ele.code === value)
+        console.log(deptstj1)
+      } else {
+        // value是我输入的值
+        isRepeat = depts.some(ele => ele.code === value)
+      }
       isRepeat ? callback(new Error(`模块下已经存在${value}编码`)) : callback()
     }
+    // 名称
     const nameCheck = async(rule, value, callback) => {
       const { depts } = await getDepartments()
-      const deptstj = depts.filter(item => item.pid === this.treeNode.id)
-      console.log(deptstj)
-
-      const isRepeat = deptstj.some(ele => ele.name === value)
+      let isRepeat = true
+      // 排除自己 再判断名称是否重复
+      if (this.formData.id) {
+        const deptstj = depts.filter(item => item.pid === this.treeNode.id && item.id !== this.treeNode.id)
+        isRepeat = deptstj.some(ele => ele.name === value)
+      } else { // 新增子部门
+        const deptstj = depts.filter(item => item.pid === this.treeNode.id)
+        isRepeat = deptstj.some(ele => ele.name === value)
+      }
       isRepeat ? callback(new Error(`该部门下一级存在${value}部门名称`)) : callback()
     }
     return {
@@ -95,10 +112,21 @@ export default {
       }
     }
   },
+  computed: {
+    title() {
+      return this.formData.id ? '编辑模式' : '新增模式'
+    }
+  },
   methods: {
     handleClose() {
       this.$emit('update:dialogVisible', false)
       this.$refs.addDeptForm.resetFields()
+      this.formData = {
+        name: '', // 部门名称
+        code: '', // 部门编码
+        manager: '', // 部门管理者
+        introduce: '' // 部门介绍
+      }
     },
     async  getEmployeeSimple() {
       this.peoples = await getEmployeeSimple()
@@ -108,11 +136,19 @@ export default {
       try {
         // 表单校验 通过validate方法 调用接口
         await this.$refs.addDeptForm.validate()
-        // 调用接口, 传输formData各项数据，用展开运算符，确定父级在父级id下新增
-        await addDepartments({ ...this.formData, pid: this.treeNode.id })
+        this.loading = true
+        // 判断是不是编辑模式
+        if (this.formData.id) {
+          await updateDepartments(this.formData)
+        } else {
+          // 调用接口, 传输formData各项数据，用展开运算符，确定父级在父级id下新增
+          await addDepartments({ ...this.formData, pid: this.treeNode.id })
+        }
+
         // 确定loding状态，v-loading
         // 接口调用新增成功之后，消息提示成功
-        this.$message.success('新增成功')
+        // 三元表达式 判断有无Id
+        this.$message.success(`${this.formData.id ? '编辑' : '提交'}成功`)
         // 新增成功后调用父组件接口
         this.$parent.getDepartments()
         // 关闭弹窗
