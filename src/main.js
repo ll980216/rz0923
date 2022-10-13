@@ -11,6 +11,9 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
+// 全局注册组件
+import components from './components/index1.js'
+Vue.use(components)
 
 import '@/icons' // icon
 import '@/permission' // permission control

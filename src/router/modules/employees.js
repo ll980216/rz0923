@@ -11,6 +11,12 @@ export default {
         title: '员工',
         icon: 'people'
       }
+    },
+    {
+      // 动态路由配置规则：id接收
+      path: '/employees/detail/:id',
+      component: () => import('@/views/employees/detail.vue'),
+      hidden: true
     }
   ]
 }

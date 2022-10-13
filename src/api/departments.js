@@ -37,3 +37,10 @@ export function delDepartments(id) {
     method: 'delete'
   })
 }
+// 删除列表
+export function delEmployee(id) {
+  return request({
+    url: `/sys/user/${id}`,
+    method: 'delete'
+  })
+}
