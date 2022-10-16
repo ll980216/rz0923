@@ -14,6 +14,11 @@
     <el-card>
       <el-table v-loading="loading" border :data="list">
         <el-table-column label="序号" sortable="" width="80" type="index" />
+        <el-table-column label="头像">
+          <template slot-scope="{row}">
+            <img style="width:100px;height:100px" :src="row.staffPhoto" @click="genQrcode(row.staffPhoto)">
+          </template>
+        </el-table-column>
         <el-table-column label="姓名" prop="username" />
         <el-table-column label="工号" prop="workNumber" />
         <el-table-column label="聘用形式" prop="formOfEmployment" :formatter="formatterFn" />
@@ -60,6 +65,15 @@
       </el-row>
     </el-card>
     <addEmployess :dialog-visible.sync="dialogVisible" />
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisibleQrcode"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <canvas ref="myCanvas" />
+    </el-dialog>
+
   </div>
 </template>
 
@@ -69,6 +83,8 @@ import { getEmployeeList } from '@/api/employees'
 import EnumHireType from '@/api/constant/employees'
 import addEmployess from './components/addEmployess.vue'
 import { delEmployee } from '@/api/departments'
+import Qrcode from 'qrcode'
+
 export default {
 
   components: {
@@ -78,6 +94,7 @@ export default {
   data() {
     return {
       dialogVisible: false,
+      dialogVisibleQrcode: false,
       page: {
         page: 1,
         size: 10
@@ -181,6 +198,16 @@ export default {
     },
     goDetail(row) {
       this.$router.push('/employees/detail/' + row.id)
+    },
+    // 点击img 显示弹层
+    genQrcode(staffPhoto) {
+      // 没有头像不显示弹层
+      if (!staffPhoto) return this.$message.error('暂无头像')
+      this.dialogVisibleQrcode = true
+      this.$nextTick(() => {
+        Qrcode.toCanvas(this.$refs.myCanvas, staffPhoto)
+        // if (error) console.error(error)
+      })
     }
   }
 }

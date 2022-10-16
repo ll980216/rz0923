@@ -11,6 +11,7 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
+import Print from 'vue-print-nb'
 // 全局注册组件
 import components from './components/index1.js'
 Vue.use(components)
@@ -29,6 +30,7 @@ Vue.directive('imgerror', imgerror)
 // })
 
 // set ElementUI lang to EN
+Vue.use(Print)
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
